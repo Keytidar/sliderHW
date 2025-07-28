@@ -28,7 +28,7 @@ const hideButtons = () => {
   currentIndex <= 0
     ? leftButton.classList.add('hidden')
     : leftButton.classList.remove('hidden');
-  currentIndex >= filesLength -1
+  currentIndex >= filesLength - 1
     ? rightButton.classList.add('hidden')
     : rightButton.classList.remove('hidden');
 };
