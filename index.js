@@ -25,10 +25,10 @@ const displayZone = document.getElementById('display-zone');
 const leftButton = document.getElementById('nav-left');
 const rightButton = document.getElementById('nav-right');
 const hideButtons = () => {
-  currentIndex < 1
+  currentIndex <= 0
     ? leftButton.classList.add('hidden')
     : leftButton.classList.remove('hidden');
-  currentIndex + 2 > filesLength
+  currentIndex >= filesLength -1
     ? rightButton.classList.add('hidden')
     : rightButton.classList.remove('hidden');
 };
@@ -48,7 +48,7 @@ navBar.addEventListener('click', (event) => {
     if (displayZone.firstElementChild) {
       displayZone.removeChild(displayZone.firstElementChild);
     }
-    currentIndex = event.target.dataset.navId;
+    currentIndex = Number(event.target.dataset.navId);
     switchMedia();
     console.log(currentIndex);
   }
@@ -61,20 +61,20 @@ const switchMedia = () => {
   slider.classList.remove('slider_audio');
   if (imgFormats.some((format) => files[currentIndex].endsWith(format))) {
     const newImg = document.createElement('img');
-    newImg.src = `media\\${files[currentIndex]}`;
+    newImg.src = `media/${files[currentIndex]}`;
     displayZone.appendChild(newImg);
   }
   if (audioFormats.some((format) => files[currentIndex].endsWith(format))) {
     const newAudio = document.createElement('audio');
     newAudio.controls = true;
     newAudio.volume = 0.2;
-    newAudio.src = `media\\${files[currentIndex]}`;
+    newAudio.src = `media/${files[currentIndex]}`;
     slider.classList.add('slider_audio');
     displayZone.appendChild(newAudio);
   }
   if (videoFormats.some((format) => files[currentIndex].endsWith(format))) {
     const newVideo = document.createElement('video');
-    newVideo.src = `media\\${files[currentIndex]}`;
+    newVideo.src = `media/${files[currentIndex]}`;
     newVideo.controls = true;
     newVideo.autoplay = true;
     newVideo.volume = 0.2;
